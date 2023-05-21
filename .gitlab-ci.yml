@@ -89,17 +89,15 @@ deploy:
   script:
     - echo "Deploying your Node.js app..."
     # - echo "$SSH_PRIVATE_KEY" | ssh-add -  # Add private key to SSH agent
-    - ssh-add <(echo "$SSH_PRIVATE_KEY")  # Add the private key to the SSH agent
-    - ssh -A -o StrictHostKeyChecking=no user@your-remote-server "
-        cd /path/to/app &&
-        export API_KEY=$YOUR_API_KEY &&
+    - ssh-add <(echo "$CD_PK")  # Add the private key to the SSH agent
+    # - ssh -i $SSH_PRIVATE_KEY user@your-server 'cd /path/to/your/app && git pull && npm install && pm2 restart app'
+    - ssh -A -o StrictHostKeyChecking=no "$REMOTE_HOST_USER"@"$REMOTE_HOST_ADDR" "
+        mkdir -p apps/price-crawler
+        cd apps/price-crawler &&
         git pull origin master &&
-        npm install &&
-        npm run build &&
-        pm2 restart app
       "
-  only:
-    - master  # Deploy only when changes are pushed to the master branch
+  # only:
+  #   - master  # Deploy only when changes are pushed to the master branch
 
 
 
