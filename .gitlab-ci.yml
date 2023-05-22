@@ -113,7 +113,7 @@ deploy_to_server:
     SSH_PRIVATE_KEY: $CD_PK
   before_script:
     - echo "Deploying your Node.js app..."
-    - echo "remote host address '$REMOTE_HOST_ADDRESS'"
+    - echo "remote host address '$REMOTE_HOST_ADDR'"
     - echo "remote host address '$REMOTE_HOST_USER'"
     - apk add --no-cache openssh-client
     - eval $(ssh-agent -s)
@@ -122,9 +122,9 @@ deploy_to_server:
     # - chmod 700 ~/.ssh
     - echo -e "Host $SSH_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   script:
-    - ssh $REMOTE_HOST_USER@$REMOTE_HOST_ADDRESS 'mkdir -p apps/price-crawler'
-    - ssh $REMOTE_HOST_USER@$REMOTE_HOST_ADDRESS 'cd apps/price-crawler && git pull origin master'
-    - ssh $REMOTE_HOST_USER@$REMOTE_HOST_ADDRESS 'cd apps/price-crawler && npm install'
+    - ssh $REMOTE_HOST_USER@$REMOTE_HOST_ADDR 'mkdir -p apps/price-crawler'
+    - ssh $REMOTE_HOST_USER@$REMOTE_HOST_ADDR 'cd apps/price-crawler && git pull origin master'
+    - ssh $REMOTE_HOST_USER@$REMOTE_HOST_ADDR 'cd apps/price-crawler && npm install'
     # - ssh $SSH_USER@$SSH_HOST 'cd /path/to/app && npm run server'
 
 
