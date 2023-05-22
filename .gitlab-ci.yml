@@ -115,6 +115,8 @@ deploy_to_server:
     - echo "Deploying your Node.js app..."
     - echo "remote host address '$REMOTE_HOST_ADDR'"
     - echo "remote host address '$REMOTE_HOST_USER'"
+    - echo "ls -la"
+    # - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     - apk add --no-cache openssh-client
     - eval $(ssh-agent -s)
     - echo "$SSH_PRIVATE_KEY" | ssh-add -
