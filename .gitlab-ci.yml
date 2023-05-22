@@ -42,6 +42,9 @@ stages:
   - test
   - deploy
 
+tags:
+  - docker-alpine
+
 # deploy:
 #   stage: deploy
 #   script:
