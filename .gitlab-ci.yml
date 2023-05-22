@@ -84,29 +84,31 @@ stages:
 #     - master  # Deploy only when changes are pushed to the master branch
 
 
-deploy:
-  stage: deploy
-  tags:
-  - docker-alpine
-  script:
-    - echo "Deploying your Node.js app..."
-    - apk update
-    - apk add openssh
-    # - echo "$SSH_PRIVATE_KEY" | ssh-add -  # Add private key to SSH agent
-    - ssh-add <(echo "$CD_PK")  # Add the private key to the SSH agent
-    # - ssh -i $SSH_PRIVATE_KEY user@your-server 'cd /path/to/your/app && git pull && npm install && pm2 restart app'
-    - ssh -A -o StrictHostKeyChecking=no "$REMOTE_HOST_USER"@"$REMOTE_HOST_ADDR" "
-        mkdir -p apps/price-crawler
-        cd apps/price-crawler &&
-        git pull origin master &&
-      "
-  # only:
-  #   - master  # Deploy only when changes are pushed to the master branch
+# deploy:
+#   stage: deploy
+#   tags:
+#   - docker-alpine
+#   script:
+#     - echo "Deploying your Node.js app..."
+#     - apk update
+#     - apk add openssh
+#     # - echo "$SSH_PRIVATE_KEY" | ssh-add -  # Add private key to SSH agent
+#     - ssh-add <(echo "$CD_PK")  # Add the private key to the SSH agent
+#     # - ssh -i $SSH_PRIVATE_KEY user@your-server 'cd /path/to/your/app && git pull && npm install && pm2 restart app'
+#     - ssh -A -o StrictHostKeyChecking=no "$REMOTE_HOST_USER"@"$REMOTE_HOST_ADDR" "
+#         mkdir -p apps/price-crawler
+#         cd apps/price-crawler &&
+#         git pull origin master &&
+#       "
+#   # only:
+#   #   - master  # Deploy only when changes are pushed to the master branch
 
 
 deploy_to_server:
   stage: deploy
-  image: node:alpine
+  # image: node:alpine
+  tags:
+    - docker-alpine
   variables:
     SSH_PRIVATE_KEY: $CD_PK
   before_script:
