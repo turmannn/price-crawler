@@ -125,6 +125,7 @@ deploy_to_server:
     - chmod 700 ~/.ssh
     - echo -e "Host $REMOTE_HOST_ADDR\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   script:
+    - scp -r ./* $REMOTE_HOST_USER@$REMOTE_HOST_ADDR:~/apps/price-crawler
     - ssh $REMOTE_HOST_USER@$REMOTE_HOST_ADDR 'mkdir -p apps/price-crawler'
     - ssh $REMOTE_HOST_USER@$REMOTE_HOST_ADDR 'cd apps/price-crawler && git pull origin master'
     - ssh $REMOTE_HOST_USER@$REMOTE_HOST_ADDR 'cd apps/price-crawler && npm install'
