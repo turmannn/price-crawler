@@ -120,7 +120,7 @@ deploy_to_server:
     - echo "$SSH_PRIVATE_KEY" | ssh-add -
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
-    - echo -e "Host $SSH_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+    - echo -e "Host $REMOTE_HOST_ADDR\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   script:
     - ssh $REMOTE_HOST_USER@$REMOTE_HOST_ADDR 'mkdir -p apps/price-crawler'
     - ssh $REMOTE_HOST_USER@$REMOTE_HOST_ADDR 'cd apps/price-crawler && git pull origin master'
