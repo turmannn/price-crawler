@@ -104,6 +104,28 @@ deploy:
   #   - master  # Deploy only when changes are pushed to the master branch
 
 
+deploy_to_server:
+  stage: deploy
+  image: node:alpine
+  variables:
+    SSH_PRIVATE_KEY: $CD_PK
+  before_script:
+    - echo "Deploying your Node.js app..."
+    - echo "remote host address '$REMOTE_HOST_ADDRESS'"
+    - echo "remote host address '$REMOTE_HOST_USER'"
+    - apk add --no-cache openssh-client
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo -e "Host $SSH_HOST\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  script:
+    - ssh $REMOTE_HOST_USER@$REMOTE_HOST_ADDRESS 'mkdir -p apps/price-crawler'
+    - ssh $REMOTE_HOST_USER@$REMOTE_HOST_ADDRESS 'cd apps/price-crawler && git pull origin master'
+    - ssh $REMOTE_HOST_USER@$REMOTE_HOST_ADDRESS 'cd apps/price-crawler && npm install'
+    # - ssh $SSH_USER@$SSH_HOST 'cd /path/to/app && npm run server'
+
+
 
 
   environment: production
