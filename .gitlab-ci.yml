@@ -90,7 +90,7 @@ deploy:
   - docker-alpine
   script:
     - echo "Deploying your Node.js app..."
-    - apt update
+    - apk update
     - apk add openssh
     # - echo "$SSH_PRIVATE_KEY" | ssh-add -  # Add private key to SSH agent
     - ssh-add <(echo "$CD_PK")  # Add the private key to the SSH agent
