@@ -42,9 +42,6 @@ stages:
   - test
   - deploy
 
-tags:
-  - docker-alpine
-
 # deploy:
 #   stage: deploy
 #   script:
@@ -89,6 +86,8 @@ tags:
 
 deploy:
   stage: deploy
+  tags:
+  - docker-alpine
   script:
     - echo "Deploying your Node.js app..."
     # - echo "$SSH_PRIVATE_KEY" | ssh-add -  # Add private key to SSH agent
