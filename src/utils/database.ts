@@ -8,12 +8,13 @@ const initDb = async(): Promise<void> => {
   db.exec(`
     CREATE TABLE IF NOT EXISTS stores (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL
+      name TEXT NOT NULL UNIQUE
     );
 
     CREATE TABLE IF NOT EXISTS products (
       id TEXT PRIMARY KEY,
       name TEXT NOT NULL,
+      link TEXT,
       store_id NUMBER NOT NULL REFERENCES stores(id)
     );
 

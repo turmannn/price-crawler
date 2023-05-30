@@ -1,6 +1,11 @@
 import * as express from 'express';
 import routes from './routes';
+import { initDb } from './utils/database'
 
+console.log('about to connect to db');
+(async () => { await initDb() })();
+
+console.log('about to create server')
 const app = express();
 const port = 3000;
 
@@ -14,3 +19,4 @@ app.use('/', routes );
 app.listen(port, () => {
   console.log(`server is running on port: ${port}`)
 });
+

@@ -5,10 +5,11 @@ interface IProduct {
   name: string,
 }
 
-const createProduct = (productName: string): void => {
+const createProduct = (productName: string, productLink: string): void => {
   db.run(
     'INSERT INTO goods (name) VALUES (?)',
-    productName
+    productName,
+    productLink,
     // error => {} // callback function is an optional arg
   );
 };
