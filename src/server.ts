@@ -1,6 +1,8 @@
 import * as express from 'express';
+import { Worker } from 'worker_threads';
 import routes from './routes';
-import { initDb } from './utils/database'
+import { initDb } from './utils/database';
+
 
 console.log('about to connect to db');
 (async () => { await initDb() })();
@@ -20,3 +22,4 @@ app.listen(port, () => {
   console.log(`server is running on port: ${port}`)
 });
 
+const worker = new Worker('./src/utils/worker.ts');
