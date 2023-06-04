@@ -1,3 +1,5 @@
+import runCrawlerAmazon from "./crawlers/amazon";
+
 console.log('Worker start')
 
 
@@ -18,6 +20,7 @@ const runAmazonCrawler = (resolve) => {
 const setTimeoutAmazonCrawler = async(timeout) => {
   return new Promise((resolve, error) => {
     setTimeout(runAmazonCrawler, timeout, resolve);
+    // setTimeout(runCrawlerAmazon, timeout, resolve);
   });
 }
 
@@ -25,7 +28,7 @@ const saveToDb = async(data) => {
 
 }
 
-const alarmMinutesOfTheDay =218;
+const alarmMinutesOfTheDay =228;
 
 
 

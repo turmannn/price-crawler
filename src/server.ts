@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { Worker } from 'worker_threads';
-import routes from './routes';
+import routes from './src/routes';
 import { initDb } from './utils/database';
 
 
