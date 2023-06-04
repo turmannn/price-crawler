@@ -2,7 +2,8 @@ import routes from './routes';
 import { initDb } from './utils/database';
 
 // import * as express from 'express';
-const express = require('express');
+// const express = require('express');
+import express from 'express';
 import { Worker } from 'worker_threads';
 
 
