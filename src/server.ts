@@ -1,7 +1,11 @@
-import * as express from 'express';
-import { Worker } from 'worker_threads';
-import routes from './src/routes';
+import routes from './routes';
 import { initDb } from './utils/database';
+
+// import * as express from 'express';
+const express = require('express');
+import { Worker } from 'worker_threads';
+
+
 
 
 console.log('about to connect to db');

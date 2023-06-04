@@ -1,9 +1,9 @@
-import runCrawlerAmazon from "./crawlers/amazon";
+// import runCrawlerAmazon from "./crawlers/amazon";
 
 console.log('Worker start')
 
 
-const runAmazonCrawler = (resolve) => {
+const runAmazonCrawler = (resolve: Tresolve) => {
   console.log(`crawler work start: ${new Date().toISOString()}`);
   let counter = 0;
   // while (counter < 900000000) {
@@ -17,14 +17,16 @@ const runAmazonCrawler = (resolve) => {
   resolve('done')
 }
 
-const setTimeoutAmazonCrawler = async(timeout) => {
+type Tresolve = typeof Promise.resolve
+
+const setTimeoutAmazonCrawler = async(timeout: number) => {
   return new Promise((resolve, error) => {
     setTimeout(runAmazonCrawler, timeout, resolve);
     // setTimeout(runCrawlerAmazon, timeout, resolve);
   });
 }
 
-const saveToDb = async(data) => {
+const saveToDb = async() => {
 
 }
 
