@@ -5,8 +5,10 @@
   "main": "src/server.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "ts-node src/server.ts",
-    "build:worker": "tsc --project tsconfig.json"
+    "build:worker": "tsc --project tsconfig.json",
+    "node_dist": "node dist/server.js",
+    "server:ts": "ts-node src/server.ts",
+    "server:js": "node dist/server.js && node dist/server.js"
   },
   "keywords": [],
   "author": "",

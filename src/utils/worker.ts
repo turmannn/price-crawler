@@ -1,9 +1,16 @@
 // import runCrawlerAmazon from "./crawlers/amazon";
-
+// const runCrawlerAmazon = require("./crawlers/amazon");
+// const fs = require('fs');
+console.log(3333, process.cwd());
+// console.log(33334, fs.readdirSync('.'));
+import runCrawlerAmazon from "./crawlers/amazon"
+// const runCrawlerAmazon = require("./src/utils/crawlers/amazon");
+// const { abra } = require("./file.ts")
 console.log('Worker start')
 
+// console.log(4444, abra())
 
-const runAmazonCrawler = (resolve: Tresolve) => {
+const runAmazonCrawler = (resolve: any) => {
   console.log(`crawler work start: ${new Date().toISOString()}`);
   let counter = 0;
   // while (counter < 900000000) {
@@ -17,12 +24,15 @@ const runAmazonCrawler = (resolve: Tresolve) => {
   resolve('done')
 }
 
-type Tresolve = typeof Promise.resolve
+// type Tresolve = typeof Promise.resolve
 
-const setTimeoutAmazonCrawler = async(timeout: number) => {
+const setTimeoutAmazonCrawler = async(timeout: any) => {
   return new Promise((resolve, error) => {
-    setTimeout(runAmazonCrawler, timeout, resolve);
-    // setTimeout(runCrawlerAmazon, timeout, resolve);
+    // setTimeout(runAmazonCrawler, timeout, resolve);
+    setTimeout(async (resolve) => {
+      await runCrawlerAmazon()
+      resolve('done')
+    }, timeout, resolve);
   });
 }
 
@@ -30,7 +40,18 @@ const saveToDb = async() => {
 
 }
 
-const alarmMinutesOfTheDay =228;
+const Alarm = () => {
+  return {
+    set: (hours: number, minutes: number = 0) => {
+      if ( [hours, minutes].every(val => val === 0)) throw new Error('hours nor minutes are not set');
+      if (0 > hours && hours > 24) throw new Error('invalid value for hours');
+      if (0 > minutes && minutes > 60) throw new Error('invalid value for minutes');
+      return hours * 60 + minutes;
+    }
+  }
+}
+
+const alarmMinutesOfTheDay = Alarm().set(4, 11);
 
 
 

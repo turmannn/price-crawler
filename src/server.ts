@@ -27,4 +27,7 @@ app.listen(port, () => {
   console.log(`server is running on port: ${port}`)
 });
 
-const worker = new Worker('./src/utils/worker.ts');
+const worker = new Worker(
+    './src/utils/workerCommunicator.js',
+    { workerData: {path: './worker.ts'} } // this path is relative to the file specified as the first argument for this function (filename)
+);

@@ -1,12 +1,13 @@
 {
   "compilerOptions": {
+    "allowJs":  true,
     "target": "es2022",
-    "module": "CommonJS",
+    "module": "commonjs",
     "outDir": "dist",
     "esModuleInterop": true,
     "moduleResolution": "node",
     "strict": true
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "src/**/*.js"],
   "exclude": ["node_modules"]
 }
